@@ -1,134 +1,116 @@
-SecureVault Cloud
+<div align="center">
+
+🔐 SecureVault Cloud
 
 Secure infrastructure. Simplified.
 
-A beginner-friendly, local-first CLI for generating and reviewing
-Terraform configurations for AWS S3 security.
+A local-first CLI that makes AWS S3 security configuration easier to understand.
+
+Generate Terraform · Review security controls · Validate locally
+
+<br>
 
 
 
 
 
+</div>
 
-Contents
+⚡ What is SecureVault?
 
-Overview
+SecureVault Cloud is an experimental Python CLI for generating and inspecting Terraform configurations for AWS S3 buckets with foundational security controls.
 
-Features
+The idea is simple: make common cloud-security settings easier to configure, inspect, and learn—without hand-writing every Terraform resource.
 
-How it works
+🧭 Local-first by design: SecureVault currently generates and reviews files on your machine. It does not deploy AWS infrastructure or verify the live state of an AWS account.
 
-Requirements
+✨ What you can do
 
-Getting started
+Capability
 
-Run the tests
+What it does
 
-Project structure
+🧩 Interactive configuration
 
-Safety and limitations
+Configure an S3 bucket through a guided CLI.
 
-Overview
+🛡️ Public-access protection
 
-SecureVault Cloud is an experimental Python command-line project
-that helps users generate and inspect Terraform configuration for AWS S3
-buckets with foundational security controls.
+Enables S3 public-access protections in generated configurations.
 
-The goal is to make common infrastructure-security settings easier to
-understand and configure without requiring users to write every
-Terraform resource by hand.
+🔒 Encryption options
 
-Current scope: SecureVault works locally. It can generate
-Terraform configuration and run Terraform initialization and
-validation. It does not deploy infrastructure or verify the live
-state of an AWS account.
+Select from the encryption options supported by the workflow.
 
-Features
+🕰️ Optional versioning
 
-Interactive CLI for configuring an S3 bucket.
+Choose whether bucket versioning should be included.
 
-Input validation for bucket names and configuration choices.
+🧪 Local security audit
 
-Terraform generation for S3 infrastructure.
+Inspect selected Terraform files and report potential findings.
 
-Public-access protections enabled by default in generated
-configurations.
+🗂️ Configuration inventory
 
-Optional versioning for the bucket.
+Keep local metadata and the latest recorded audit for configurations.
 
-Encryption options supported by the configuration workflow.
+🧱 Safer file handling
 
-Local security audit for selected Terraform configuration files.
+Input validation and overwrite protection help reduce accidental mistakes.
 
-Configuration inventory and registry for local configuration
-metadata and the latest recorded audit.
+✅ Terraform validation
 
-Overwrite protection to reduce accidental replacement of generated
-configurations.
+Initialize and validate configuration without deploying resources.
 
-Automated tests for configuration, generation, auditing, registry,
-and Terraform command restrictions.
+🔄 How it works
 
-The security audit analyzes local Terraform configuration. It is not a
-full Terraform language parser, and it does not confirm live AWS
-settings, account permissions, or deployed resource state. Review its
-findings and the generated Terraform before using them in a real
-environment.
+  Configure
+     │
+     ▼
+  Validate inputs
+     │
+     ▼
+  Generate Terraform
+     │
+     ▼
+  Audit local configuration
+     │
+     ▼
+  Terraform init + validate
+     │
+     ▼
+  Review the result
 
-How it works
+No terraform apply. No AWS resource creation. The workflow stays local.
 
-Choose configuration options in the SecureVault CLI.
+🚀 Quick start · Windows
 
-SecureVault validates the inputs.
+1. Get the project
 
-The generator writes Terraform configuration files locally.
+Clone or download this repository, then open PowerShell in the project directory.
 
-The security auditor can review local Terraform configuration and
-report findings.
-
-Terraform initialization and validation can be run to check the
-configuration.
-
-These steps do not create AWS infrastructure.
-
-Requirements
-
-Windows with PowerShell or Command Prompt
-
-Python 3.11 or later
-
-Terraform CLI installed and available on PATH
-
-AWS credentials are not needed for local configuration generation and
-static auditing. Terraform provider initialization may require network
-access to download the provider.
-
-Getting started (Windows)
-
-Download or clone this repository.
-
-Open a terminal in the project folder.
-
-Install the Python dependencies:
+2. Install dependencies
 
 python -m pip install -r requirements.txt
 
-Confirm Python and Terraform are available:
+3. Check prerequisites
+
+Run these commands separately:
 
 python --version
 terraform version
 
-Launch SecureVault:
+4. Launch SecureVault
 
 .\run_securevault.bat
 
-Run the tests
+🧪 Run the tests
 
 From the project root:
 
 python -m unittest discover -s tests -v
 
-Project structure
+🗺️ Project map
 
 Secure-Vault/
 ├── src/
@@ -150,32 +132,29 @@ Secure-Vault/
 ├── README.md
 └── .gitignore
 
-Terraform provider downloads, Python caches, local generated
-configurations, and state files should not be committed.
+🛡️ Safety & limitations
 
-Safety and limitations
+No deployment: The current CLI does not enable terraform apply or terraform destroy.
 
-The current CLI does not enable terraform apply or
-terraform destroy.
+No AWS changes: SecureVault does not create or modify AWS resources.
 
-SecureVault does not create or modify AWS resources.
+Local-only audit: Audit findings describe local Terraform files; live AWS configuration is not verified.
 
-Static audit results describe local files only; live AWS configuration
-is not verified.
+Not a full HCL parser: The static auditor does not understand every possible Terraform language construct. Review its findings rather than treating them as a guarantee.
 
-A customer-managed KMS key ARN does not prove the key exists or that
-permissions are correct.
+KMS ARN checks: Entering a customer-managed KMS key ARN does not prove the key exists or that permissions are correct.
 
-Keep credentials, .env files, Terraform state, private keys, and
-other sensitive data out of version control.
+Keep secrets private: Never commit AWS credentials, .env files, Terraform state, private keys, or other sensitive data.
 
-Review generated Terraform and understand its effects before using it
-outside a local demonstration.
+AWS credentials are not needed for local generation and static auditing. Terraform initialization may need network access to download the AWS provider.
 
-Development status
+📌 Development status
 
-SecureVault Cloud is a work in progress intended for learning and
-demonstration. Features and interfaces may change. Contributions, bug
-reports, and suggestions are welcome.
+SecureVault Cloud is a work in progress built for learning and demonstration. Features and interfaces may change. Bug reports, ideas, and contributions are welcome.
 
-SecureVault Cloud — Build securely. Configure confidently.
+<div align="center">
+
+SecureVault Cloud
+Build securely. Configure confidently.
+
+</div>
