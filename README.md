@@ -110,28 +110,32 @@ From the project root:
 
 python -m unittest discover -s tests -v
 
-🗺️ Project map
+## 🗂️ Project Structure
 
+```text
 Secure-Vault/
-├── src/
-│   ├── main.py
-│   ├── terminal_ui.py
-│   ├── prerequisites.py
-│   ├── configuration.py
-│   ├── configuration_registry.py
-│   ├── infrastructure_viewer.py
-│   ├── security_auditor.py
-│   ├── terraform_generator.py
-│   └── terraform_manager.py
-├── terraform/
+│
+├── src/                         # Application source code
+│   ├── main.py                  # Application entry point
+│   ├── terminal_ui.py           # Terminal interface
+│   ├── prerequisites.py         # Environment checks
+│   ├── configuration.py         # Configuration handling
+│   ├── configuration_registry.py# Configuration metadata registry
+│   ├── infrastructure_viewer.py # Infrastructure inventory
+│   ├── security_auditor.py      # Local security analysis
+│   ├── terraform_generator.py   # Terraform generation
+│   └── terraform_manager.py     # Terraform command management
+│
+├── terraform/                   # Terraform configuration
 │   ├── main.tf
 │   └── .terraform.lock.hcl
-├── tests/
-├── requirements.txt
-├── run_securevault.bat
-├── README.md
-└── .gitignore
-
+│
+├── tests/                       # Automated tests
+├── requirements.txt              # Python dependencies
+├── run_securevault.bat           # Windows launcher
+├── README.md                     # Project documentation
+└── .gitignore                    # Git exclusions
+```
 🛡️ Safety & limitations
 
 No deployment: The current CLI does not enable terraform apply or terraform destroy.
