@@ -114,12 +114,27 @@ def collect_s3_configuration():
     review.add_row("Encryption", labels[encryption])
     if kms_key_arn:
         review.add_row("KMS key ARN", kms_key_arn)
-    review.add_row("Public access", "Blocked (always enabled)")
+
+    # Mandatory security defaults: users cannot disable these in SecureVault.
+    review.add_row("Block public ACLs", "Enabled by default")
+    review.add_row("Block public policies", "Enabled by default")
+    review.add_row("Ignore public ACLs", "Enabled by default")
+    review.add_row("Restrict public buckets", "Enabled by default")
     console.print(Panel(
-        Group(Text("Review your choices before generating Terraform files.", style=TEXT_MUTED),
-              Text(""), review, Text(""),
-              Text("Local files only — this does not deploy anything to AWS.", style=BRAND_RED),
-              Text(""), Text("Enter yes to generate, or back to cancel.", style=TEXT_MUTED)),
+        Group(
+            Text("Review your choices before generating Terraform files.", style=TEXT_MUTED),
+            Text(""),
+            review,
+            Text(""),
+            Text(
+                "These four public-access protections are mandatory "
+                "and cannot be disabled here.",
+                style=TEXT_MUTED,
+            ),
+            Text("Local files only — this does not deploy anything to AWS.", style=BRAND_RED),
+            Text(""),
+            Text("Enter yes to generate, or back to cancel.", style=TEXT_MUTED),
+        ),
         title="[bold]STEP 4 OF 4 · REVIEW CONFIGURATION[/]",
         border_style=BRAND_RED, box=box.DOUBLE, padding=(1, 2), expand=False))
     answer = console.input(f"[bold {BRAND_RED}]  › [/]").strip().lower()
